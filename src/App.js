@@ -15,11 +15,11 @@ class App extends React.Component {
 	constructor() {
 		super();
 
+		this.url = 'http://127.0.0.1:3000';
 		this.snackbarTransDuration = 300;
 		
 		this.state = {
 			response: false,
-			endpoint: 'http://127.0.0.1:3000',
 			lineChartData: {
 				labels: [],
 				datasets: lineChartConfig,
@@ -32,8 +32,7 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		const { endpoint } = this.state;
-		const socket = io(endpoint);
+		const socket = io(this.url);
 
 		socket.on('data', data => {
 			const { lineChartData, barChartData } = this.state;
